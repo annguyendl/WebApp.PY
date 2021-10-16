@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>annguyendl.github.io</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700'>
+    <link rel='stylesheet' href="{{url_for('static', filename='css/main.css')}}">
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+</head>
+
+<body translate="no" >
+<div class="line"></div>
+<div class="wrapper">
+    <header role="banner">
+    <nav role="navigation">
+        <h1><a href="#">annguyendl</a></h1>
+        <ul class="nav-ul">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('tech') }}">Technologies</a></li>
+        <li><a href="{{ url_for('projects') }}">Projects</a></li>
+        <li><a href="{{ url_for('contact') }}">Contacts</a></li>
+        </ul>
+    </nav>
+    </header>
+    <main role="main">
+        {%block content%}
+        {%endblock%}
+    </main>
+</div>
+<footer>
+  <nav role="navigation">
+    <ul class="nav-ul">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About Us</a></li>
+      <li><a href="{{ url_for('tech') }}">Technologies</a></li>
+      <li><a href="{{ url_for('projects') }}">Projects</a></li>
+      <li><a href="{{ url_for('contact') }}">Contacts</a></li>
+    </ul>
+  </nav>
+  <p class="copy">Homepage's template by &copy;<a href="https://codepen.io/alexdevero">Alex Devero Design 2014</a></p>
+</footer>
+<div class="line"></div>
+</body>
+</html>
