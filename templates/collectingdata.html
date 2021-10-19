@@ -1,0 +1,22 @@
+{%extends "layout.html"%}
+{%block content%}
+  <div id="data-collection">
+    <section class="sec-intro" role="section">
+        <img src="{{ url_for('static', filename='images/data-collection.jpg') }}" alt="Think less, do more!" style="width: 960px; height: 397px;"/>
+        <h1>Think less, do more!</h1>
+    </section>
+    <section class="sec-data" role="section">
+      <div class="data-collection">
+        <h1>Collecting data</h1>
+        <h3>Please fill the entries to get population statistics on height</h3>
+        <div class="message">{{errmsg | safe}}</div>
+        <form action="/success" method="post">
+          <input title="Your email will be safe with us" placeholder="Enter your email address" type="email" name="email_name" required><br/>
+          <input title="Your email will be safe with us" placeholder="Enter your height in cm" type="number" min="50" max="250" step="0.1" name="height_name" required><br/>
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+  </section>
+
+  </div>
+{%endblock%}

@@ -13,6 +13,18 @@ Installation virtual environment:
 #pip3.9 install virtualenv
 ```
 
+Installation PostgreSQL library:
+
+```powershell
+#pip3.9 install psycopg2
+```
+
+Installation Flask-SQLAlchemy:
+
+```powershell
+#pip3.9 install Flask-SQLAlchemy
+```
+
 ## Create virtual environment and need libraries for web app in Windows PowerShell
 
 ```powershell
@@ -34,3 +46,7 @@ d-----        10/16/2021   9:11 PM                WebApp.PY
 
 - https://www.heroku.com
 - https://www.pythonanywhere.com
+
+## References:
+
+- Jinja template in Flask: https://jinja.palletsprojects.com/en/2.9.x/templates/
