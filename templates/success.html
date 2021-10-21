@@ -7,7 +7,10 @@
     </section>
     <section class="sec-body" role="section">
       <h2>Congratulation!</h2><br/>
-      <h3>Your data is analyzed successfully. A result was sent to your provided email address. Please check for the analyzed result.</h3>
+      <div class="message">{{msg | safe}}</div>
+    </section>
+    <section class="sec-body" role="section">
+      {% include btn ignore missing %}
     </section>
   </div>
 {%endblock%}

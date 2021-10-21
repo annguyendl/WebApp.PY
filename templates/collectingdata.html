@@ -10,9 +10,15 @@
         <h1>Collecting data</h1>
         <h3>Please fill the entries to get population statistics on height</h3>
         <div class="message">{{errmsg | safe}}</div>
-        <form action="/success" method="post">
+        <form action="{{ url_for('success') }}" method="post">
           <input title="Your email will be safe with us" placeholder="Enter your email address" type="email" name="email_name" required><br/>
           <input title="Your email will be safe with us" placeholder="Enter your height in cm" type="number" min="50" max="250" step="0.1" name="height_name" required><br/>
+          <button type="submit">Submit</button>
+        </form>
+        <br/>
+        <h3>Please upload a smile :-) </h3>
+        <form action="{{ url_for('uploadfile') }}" method="post" enctype="multipart/form-data">
+          <input type="file" name="upload_file" accept=".jpg,.png,.gif"><br/>          
           <button type="submit">Submit</button>
         </form>
     </div>

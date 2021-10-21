@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import quote
 from send_email import send_email
 from sqlalchemy.sql import func
+from werkzeug.utils import secure_filename
+import uuid, os
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://bookinv:%s@localhost/bookinv' % quote('bookinv@12345')
@@ -41,23 +44,47 @@ def success():
             avg_height = db.session.query(func.avg(Data.height_)).scalar()
             cnt_height = db.session.query(Data.height_).count()
             send_email(email, height, avg_height, cnt_height)
-            return render_template("success.html")
+            
+            return render_template("success.html",
+            msg="Your data is analyzed successfully. A result was sent to your provided email address. Please check for the analyzed result.")
+    
     return render_template("collectingdata.html",
     errmsg='You already got the analysis result for this email address. Please try the new one.')
 
-@app.route('/contact/')
+@app.route('/uploadfile', methods=['POST'])
+def uploadfile():
+    if request.method=='POST':        
+        upload_file = request.files["upload_file"]
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'static/uploadimg/' + str(uuid.uuid4().hex) + "." + upload_file.filename.split(".")[-1])
+        upload_file.save(filename)
+        #TODO: Save the file path, original filename to database
+
+    #TODO: build the uploaded file list from database to display in 'download.html'
+    return render_template("success.html",
+    msg='Images are uploaded successful to [%s].' % (filename), btn="download.html")
+
+@app.route('/download')
+def download():
+    smile = "Take_a_smile.jpg"
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'static/uploadimg/' + smile)
+
+    return send_file(filename, attachment_filename="Takeasmile_theyarefree.jpg", as_attachment=True)
+
+@app.route('/contact')
 def contact():
     return render_template("contact.html")
 
-@app.route('/tech/')
+@app.route('/tech')
 def tech():
     return render_template("tech.html")
 
-@app.route('/projects/')
+@app.route('/projects')
 def projects():
     return render_template("projects.html")
 
-@app.route('/datacollection/')
+@app.route('/datacollection')
 def datacollection():
     return render_template("collectingdata.html")
 
