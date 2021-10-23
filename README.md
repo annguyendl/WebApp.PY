@@ -3,44 +3,41 @@ Web Application with Flask. Source code and documents are from https://www.udemy
 
 ## Installation flask and virtualenv
 
-```powershell
-#pip3.9 install flask
-```
-
 Installation virtual environment:
 
 ```powershell
 #pip3.9 install virtualenv
 ```
 
-Installation PostgreSQL library:
-
-```powershell
-#pip3.9 install psycopg2
-```
-
-Installation Flask-SQLAlchemy:
-
-```powershell
-#pip3.9 install Flask-SQLAlchemy
-```
-
 ## Create virtual environment and need libraries for web app in Windows PowerShell
 
 ```powershell
-#md ./mysite
-#copy ./WebApp.PY ./mysite
-#cd ./mysite
-#python -m venv virtual
-#dir
-    Directory: D:\Learning\Python\mysite
+> cd D:\Learning\Python\WebApp.PY
+> python -m venv env
+# OR
+> virtualenv env
+# Check 'env' directory are created
+> dir
+    Directory: D:\Learning\Python\WebApp.PY
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        10/16/2021   9:12 PM                virtual
+d-----        10/16/2021   9:12 PM                env
 d-----        10/16/2021   9:11 PM                WebApp.PY
-#.\virtual\Scripts\pip3.9.exe install flask
-#.\virtual\Scripts\python.exe .\WebApp.PY\HelloWorld.py
 ```
+
+Activate the local environment and install libraries
+```powershell
+# Activate virtual env
+> .\env\Scripts\activate.bat
+# Install libraries
+> pip install flask
+> pip install psycopg2
+> pip install Flask-SQLAlchemy
+> pip install geopy
+# Launch welsite
+> python HelloWorld.py
+```
+
 
 ## Python hosting servers:
 

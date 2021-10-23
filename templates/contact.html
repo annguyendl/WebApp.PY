@@ -4,6 +4,16 @@
     <section class="sec-intro" role="section">
         <img src="{{ url_for('static', filename='images/banner1.jpg') }}" alt="Think less, do more!" />
         <h1>Think less, do more!</h1>
-    </section>    
+    </section>
+    <section class="sec-content" role="section">   
+      <section class="sec-body" role="section">
+        <div class="message">{{errmsg | safe}}</div>
+      </section>   
+      <h3>Upload a CSV file with address to check location</h3>
+        <form action="{{ url_for('upcontactfile') }}" method="post" enctype="multipart/form-data">
+          <input type="file" name="upload_file" accept=".csv"><br/>          
+          <button type="submit">Submit</button>
+        </form>
+    </section>
   </div>
 {%endblock%}
