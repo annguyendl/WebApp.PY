@@ -107,10 +107,6 @@ def download():
 def contact():
     return render_template("contact.html")
 
-@app.route('/tech')
-def tech():
-    return render_template("tech.html")
-
 @app.route('/projects')
 def projects():
     return render_template("projects.html")
@@ -118,6 +114,49 @@ def projects():
 @app.route('/datacollection')
 def datacollection():
     return render_template("collectingdata.html")
+
+@app.route('/tech')
+def tech():
+    import datetime
+    from pandas_datareader import data
+    from bokeh.plotting import figure, show, output_file
+    from bokeh.embed import components
+    from bokeh.resources import CDN
+
+    def dec_inc(close_price, open_price):
+        if close_price > open_price:
+            return "Increase"
+        elif close_price < open_price:
+            return "Decrease"
+        else:
+            return "Equal"
+
+    startdt = datetime.datetime(2021, 1, 1)
+    enddt = datetime.datetime(2021, 10, 23)
+    df = data.DataReader(name="AAPL", data_source="yahoo", start=startdt, end=enddt)
+
+    p=figure(x_axis_type='datetime', width=1000, height=300, sizing_mode="scale_width")
+    p.title="Candlestick chart"
+
+    p.grid.grid_line_alpha=0.3
+
+    p.segment(df.index, df.High, df.index, df.Low, color="Black")
+
+    df["Status"]=[dec_inc(c, o) for c, o in zip(df.Close, df.Open)]
+
+    df["Middle"]=(df.Open+df.Close)/2
+
+    df["Diff"]=abs(df.Open-df.Close)
+
+    hour_12=12*60*60*1000
+    p.rect(df.index[df.Status=="Increase"], df.Middle[df.Status=="Increase"], hour_12, df.Diff[df.Status=="Increase"], fill_color="green", line_color="black")
+    p.rect(df.index[df.Status=="Decrease"], df.Middle[df.Status=="Decrease"], hour_12, df.Diff[df.Status=="Decrease"], fill_color="red", line_color="black")
+
+    script1, div1 = components(p)
+    cdn_js = CDN.js_files
+    cdn_css = CDN.css_files
+
+    return render_template("tech.html", script1=script1, div1=div1, cdn_js1=cdn_js[0])
 
 if __name__=="__main__":
     app.run(debug=True)

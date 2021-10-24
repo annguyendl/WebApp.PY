@@ -34,15 +34,36 @@ Activate the local environment and install libraries
 > pip install psycopg2
 > pip install Flask-SQLAlchemy
 > pip install geopy
+> pip install pandas
+> pip install pandas_datareader
+> pip install bokeh
+> pip install gunicorn
 # Launch welsite
 > python HelloWorld.py
 ```
-
 
 ## Python hosting servers:
 
 - https://www.heroku.com
 - https://www.pythonanywhere.com
+
+### Create Procfile
+```
+web: gunicorn HelloWorld:app
+```
+
+### Create runtime.txt
+Check Heroku runtime support:
+#https://devcenter.heroku.com/articles/python-runtimes#supported-python-runtimes
+runtime.txt
+```
+python-3.9.7
+```
+
+### Create requirements.txt
+```powershell
+.\env\Scripts\pip freeze > requirement.txt 
+```
 
 ## References:
 

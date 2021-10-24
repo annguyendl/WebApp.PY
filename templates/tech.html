@@ -5,6 +5,10 @@
         <img src="{{ url_for('static', filename='images/banner1.jpg') }}" alt="Dream bold. Think smart. Do fast." />
         <h1>Dream bold. Think smart. Do fast.</h1>
     </section>
-    
+    <section class="sec-content" role="section">
+      <script type="text/javascript" src="{{ cdn_js1 | safe }}"></script>
+      {{ script1 | safe }}
+      {{ div1 | safe }}
+    </section>
   </div>
 {%endblock%}
