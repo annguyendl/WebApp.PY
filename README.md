@@ -47,7 +47,10 @@ Activate the local environment and install libraries
 - https://www.heroku.com
 - https://www.pythonanywhere.com
 
-### Create Procfile
+### Create `Procfile`
+
+*(Without extension)*
+
 ```
 web: gunicorn HelloWorld:app
 ```
@@ -55,15 +58,46 @@ web: gunicorn HelloWorld:app
 ### Create runtime.txt
 Check Heroku runtime support:
 #https://devcenter.heroku.com/articles/python-runtimes#supported-python-runtimes
-runtime.txt
+`runtime.txt`
+
 ```
 python-3.9.7
 ```
 
 ### Create requirements.txt
 ```powershell
-.\env\Scripts\pip freeze > requirement.txt 
+> .\env\Scripts\pip freeze > requirement.txt 
 ```
+
+### Download and install heroku CLI.
+
+```powershell
+#Login to heroku cli:
+> heroku login
+#Update heroku client:
+> heroku update
+# Check apps existing in heroku:
+> heroku apps
+# Create new app:
+> heroku create annguyendl
+https://annguyendl.herokuapp.com/ | https://git.heroku.com/annguyendl.git
+```
+
+### Create github.com repository and connect to https://dashboard.heroku.com/:
+
+- Create python application
+- On Setting tab, check the BuildPacks=Heroku/Python
+- On Deploy tab, choose: Deployment method=GitHub and connect to GitHub repos. App connected to GitHub=WebApp.PY.
+- On Deploy tab, Manual deploy section, Choose a branch to deploy=main and click Deploy Branch button.
+
+After Heroku finished, it will show the deployed link: e.g.: https://annguyendl.hirakuapp.com.
+
+```
+#Check app log
+> heroku logs --tail
+```
+
+
 
 ## References:
 
